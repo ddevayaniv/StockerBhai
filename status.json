@@ -1,6 +1,6 @@
 {
-  "last_run": null,
+  "last_run": "2026-05-25T10:56:15.879436+00:00",
   "last_success": null,
-  "last_error": null,
+  "last_error": "NSE homepage failed: 403",
   "nse_ok": false
 }
