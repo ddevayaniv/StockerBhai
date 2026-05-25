@@ -11,6 +11,10 @@ permissions:
 
 jobs:
   run-bot:
+    concurrency:
+      group: stockerbhai-bot
+      cancel-in-progress: true
+
     runs-on: ubuntu-latest
 
     steps:
@@ -31,10 +35,15 @@ jobs:
           CHAT_ID: ${{ secrets.CHAT_ID }}
         run: python bot.py
 
-      - name: Commit state
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add state.json status.json
-          git diff --cached --quiet || git commit -m "update bot state"
-          git push
+- name: Commit state
+  run: |
+    git config user.name "github-actions"
+    git config user.email "actions@github.com"
+
+    git add state.json status.json
+
+    git commit -m "update bot state" || echo "No changes"
+
+    git pull --rebase origin main
+
+    git push
