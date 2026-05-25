@@ -241,4 +241,4 @@ def main():
     save_json(STATUS_FILE, status)
 
 if __name__ == "__main__":
-    main()
+    send_message("TEST MESSAGE")
